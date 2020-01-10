@@ -13,8 +13,7 @@ jupyter:
     name: python3
 ---
 
-# Name(s)
-**PUT YOUR FULL NAME(S) HERE**
+# Ayan Patel
 
 
 **Instructions:** This is an individual assignment, but you may discuss your code with your neighbors.
@@ -46,46 +45,70 @@ For the following exercises please read the Python appendix in the Marsland text
 ## Exercise 1
 
 ```python
-# YOUR SOLUTION HERE
-#a=1000
-print('this is my answer',a+1) 
+import numpy as np
+a = np.full((6,4), 2)
+a
 ```
 
 ## Exercise 2
 
 ```python
-# YOUR SOLUTION HERE
-a=2000
+b = np.full((6,4), 1)
+np.fill_diagonal(b, 3)
+b
 ```
 
 ## Exercise 3
 
 ```python
-# YOUR SOLUTION HERE
+a*b #works element by element
+#np.dot(a,b) #does not work because shapes are not aligned, column and row number must match for mat mult inner dim must be same
 ```
 
 ## Exercise 4
 
 ```python
-# YOUR SOLUTION HERE
+c = np.dot(a.transpose(), b)
+d = np.dot(a, b.transpose())
+print (c)
+print (d)
+#one has a row count of 4 and the other of 6 - outer dim is size of product
 ```
 
 ## Exercise 5
 
 ```python
-# YOUR SOLUTION HERE
+def myFunc():
+    print ("hello")
+    
+myFunc()
 ```
 
 ## Exercise 6
 
 ```python
-# YOUR SOLUTION HERE
+def randArr():
+    a = np.random.rand(3,2)
+    print (a)
+    print (np.sum(a))
+    print (np.mean(a))
+    
+randArr()
 ```
 
 ## Exercise 7
 
 ```python
-# YOUR SOLUTION HERE
+def countOnes(x):
+    count = 0
+    for i in range(x.shape[0]):
+        for j in range(x.shape[1]):
+            if x[i,j] == 1:
+                count += 1
+    print (count)
+    print (len(np.where(x==1)[0]))
+    
+countOnes(np.full((2,2), 1))
 ```
 
 ## Excercises 8-???
@@ -96,28 +119,35 @@ While the Marsland book avoids using another popular package called Pandas, we w
 Repeat exercise A.1 from Marsland, but create a Pandas DataFrame instead of a NumPy array.
 
 ```python
-# YOUR SOLUTION HERE
+import pandas as pd
+df = pd.DataFrame(np.full((6,4), 2))
+df
 ```
 
 ## Exercise 9
 Repeat exercise A.2 using a DataFrame instead.
 
 ```python
-# YOUR SOLUTION HERE
+df2 = pd.DataFrame(np.ones((6,4)))
+np.fill_diagonal(df2.to_numpy(), 3)
+df2
 ```
 
 ## Exercise 10
 Repeat exercise A.3 using DataFrames instead.
 
 ```python
-# YOUR SOLUTION HERE
+df*df2
 ```
 
 ## Exercise 11
 Repeat exercise A.7 using a dataframe.
 
 ```python
-# YOUR SOLUTION HERE
+def countdf_ones(dfin):
+    print (len(np.where(dfin==1)[0]))
+    
+countdf_ones(df2)
 ```
 
 ## Exercises 12-14
@@ -137,22 +167,25 @@ Notice how we have nice headers and mixed datatypes? That is one of the reasons 
 How do you select the ``name`` column without using .iloc?
 
 ```python
-## YOUR SOLUTION HERE
+titanic_df['name']
 ```
 
 ## Exercise 13
 After setting the index to ``sex``, how do you select all passengers that are ``female``? And how many female passengers are there?
 
 ```python
-## YOUR SOLUTION HERE
 titanic_df.set_index('sex',inplace=True)
+tf = titanic_df.loc['female']
+l = len(titanic_df.loc['female'])
+print (tf)
+print ("female passenger count: ", l)
 ```
 
 ## Exercise 14
 How do you reset the index?
 
 ```python
-## YOUR SOLUTION HERE
+titanic_df.reset_index()
 ```
 
 ```python
